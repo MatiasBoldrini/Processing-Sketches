@@ -23,9 +23,9 @@ class Pelotas {
     void rebotarHaciaDerechaOIzquierda(){
         speedx=speedx*-1;
     }
-    void lanzarPelota(float angulo){
-        y-=sin(angulo)*speedy;
-        x+=cos(angulo)*speedx;
+    void lanzarPelota(){
+        y-=sin(angle)*speedy;
+        x+=cos(angle)*speedx;
     }
 }
 int cantidadDePelotas=10;
@@ -33,13 +33,13 @@ Pelotas pelota[] = new Pelotas[cantidadDePelotas];
 void setup() {
     size(1920, 1000);
     for (int i = 0; i < pelota.length; ++i) {
-        pelota[i]= new Pelotas(random(1,100),round(random(1,179)));
+        pelota[i]= new Pelotas(random(1,20),round(random(1,179)));
     }
 }
 void draw() {
     background(0);
     for (int i = 0; i < pelota.length; ++i) {
-        pelota[i].lanzarPelota(radians(90));
+        pelota[i].lanzarPelota();
         if (pelota[i].x >= width-pelota[i].radio/2 || pelota[i].x-pelota[i].radio/2 <= 1 ) {
             pelota[i].rebotarHaciaDerechaOIzquierda();
             }
