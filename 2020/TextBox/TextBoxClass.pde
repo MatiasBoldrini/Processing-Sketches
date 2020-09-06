@@ -58,6 +58,9 @@ class TextBox  {
 	String getText(){ 
 		return palabra;
 	}
+	void setText(String textToChange){
+		palabra=textToChange;
+	}
 	float getNumbers(){
 		if (tipoDeDato == "int" && palabra.length() > 0) {
 			for (int i = 0; i < palabra.length(); ++i) { // para contar cuantos puntos tiene la palabra
