@@ -1,20 +1,17 @@
-class TextBox  {
-	int x1,y1,ancho,alto,tamanoDetexto;
-	color colorDelBoton,colorDelTexto;
-	String palabra = ""; // palabra del textBox
-	boolean enabledToType=false; // para detectar si le hizo click al textBox
-	String tipoDeDato;	// Para detectar que tipo de dato quiere recibir 
-	int points =0;	// para que no de eerror la conversion de Float a Strings por muchos puntos
-	boolean hasBeenExecuted = false; //para detectar si esta usando correctamente el programa
+lass TextBox  {
+	int x1,y1,ancho,alto,tamanoDetexto,points =0;
+	color textBoxColor,textColor;
+	String palabra = "",tipoDeDato;
+	boolean enabledToType=false, hasBeenExecuted = false; // para detectar si le hizo click al textBox y para detectar si esta usando correctamente el programa
 	float textHeight;
-	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color colorDelBoton,color colorDelTexto) {
+	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color textBoxColor,color textColor) {
 		this.x1=x1;
 		this.y1=y1;
 		this.ancho=ancho;
 		this.alto=alto;
 		this.tamanoDetexto=tamanoDetexto;
-		this.colorDelBoton=colorDelBoton;
-		this.colorDelTexto=colorDelTexto;
+		this.textBoxColor=textBoxColor;
+		this.textColor=textColor;
 	}
 	void detectData(String tipoDeDato) { // aca el usuario especifica si quiere recibir solo enteros o cualquier cosa 
 		this.tipoDeDato=tipoDeDato;
@@ -34,9 +31,9 @@ class TextBox  {
 	}
 	void drawTextBox(){ // para dibujar la textBox como un boton
 		if (estoySobreElBoton()) {
-			fill(colorDelBoton);
+			fill(textBoxColor);
 			rect(x1, y1, ancho, alto);
-			fill(colorDelTexto);
+			fill(textColor);
 			if(mousePressed == true){
 				enabledToType=true;
 			}
@@ -44,9 +41,9 @@ class TextBox  {
 			if(mousePressed == true){
 				enabledToType=false;
 			}
-			fill(colorDelBoton);
+			fill(textBoxColor);
 			rect(x1, y1, ancho, alto);
-			fill(colorDelTexto);
+			fill(textColor);
 		}
 		textSize(tamanoDetexto);
 		text(palabra, x1+5, (y1+alto)-(alto-textAscent() * 0.8) / 2);
@@ -72,11 +69,11 @@ class TextBox  {
 			}
 			if (points <= 1){ // si solo hay un punto en el numero
 				points=0;
-				colorDelTexto=color (colorDelTexto);
+				textColor=color (textColor);
 				return Float.parseFloat(palabra);
 			}else {
 				println("Has puesto "+ points+" puntos en el TextBox");
-				colorDelTexto=color (255,0,0);
+				textColor=color (255,0,0);
 				points=0;
 				return 0.0;
 			}
