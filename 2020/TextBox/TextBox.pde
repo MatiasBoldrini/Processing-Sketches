@@ -1,4 +1,4 @@
-lass TextBox  {
+Class TextBox  {
 	int x1,y1,ancho,alto,tamanoDetexto,points =0;
 	color textBoxColor,textColor;
 	String palabra = "",tipoDeDato;
