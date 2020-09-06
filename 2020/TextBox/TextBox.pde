@@ -37,7 +37,6 @@ class TextBox  {
 			fill(colorDelBoton);
 			rect(x1, y1, ancho, alto);
 			fill(colorDelTexto);
-			println("AAA");
 			if(mousePressed == true){
 				enabledToType=true;
 			}
@@ -45,7 +44,6 @@ class TextBox  {
 			if(mousePressed == true){
 				enabledToType=false;
 			}
-			println("NOO");
 			fill(colorDelBoton);
 			rect(x1, y1, ancho, alto);
 			fill(colorDelTexto);
