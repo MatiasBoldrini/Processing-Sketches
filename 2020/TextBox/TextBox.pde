@@ -1,45 +1,43 @@
 class TextBox  {
 	int x1,y1,ancho,alto,tamanoDetexto;
-	color colorDelBoton, colorDelBotonSinFoco,colorDelTexto;
+	color colorDelBoton,colorDelTexto;
 	String palabra = ""; // palabra del textBox
 	boolean enabledToType=false; // para detectar si le hizo click al textBox
 	String tipoDeDato;	// Para detectar que tipo de dato quiere recibir 
 	int points =0;	// para que no de eerror la conversion de Float a Strings por muchos puntos
 	boolean hasBeenExecuted = false; //para detectar si esta usando correctamente el programa
 	float textHeight;
-	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color colorDelBoton,color colorDelBotonSinFoco,color colorDelTexto, color colorDelTextoSinFoco) {
+	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color colorDelBoton,color colorDelTexto) {
 		this.x1=x1;
 		this.y1=y1;
 		this.ancho=ancho;
 		this.alto=alto;
 		this.tamanoDetexto=tamanoDetexto;
 		this.colorDelBoton=colorDelBoton;
-		this.colorDelBotonSinFoco=colorDelBoton;
 		this.colorDelTexto=colorDelTexto;
-		this.colorDelTextoSinFoco=colorDelTextoSinFoco;
 	}
 	void detectData(String tipoDeDato) { // aca el usuario especifica si quiere recibir solo enteros o cualquier cosa 
 		this.tipoDeDato=tipoDeDato;
 		hasBeenExecuted = true;
 		textSize(tamanoDetexto);
 		if (enabledToType) { // si le hizo click al TextBox
-			if (keyCode == BACKSPACE && palabra.length() > 0) {
-				palabra=palabra.substring(0,palabra.length()-1); //borrar un digito de la palabra
+			if (keyCode == BACKSPACE) {
+				if (palabra.length() > 0) {
+					palabra=palabra.substring(0,palabra.length()-1); //borrar un digito de la palabra
+				}
 			}else if(tipoDeDato == "int" && (Character.isDigit(key) || key == '.') && textWidth(palabra)+tamanoDetexto < ancho){ // Detecta si el caracter es un entero o punto, si el ancho de texto es menor al ancho del texto
 				palabra+=key;
 			}else if (tipoDeDato == "str" && textWidth(palabra)+tamanoDetexto < ancho) {
 				palabra+=key;
-				println("ancho: "+ancho);
-				println("textWidth(palabra): "+textWidth(palabra));
 			}
 		}
 	}
 	void drawTextBox(){ // para dibujar la textBox como un boton
-		
 		if (estoySobreElBoton()) {
 			fill(colorDelBoton);
 			rect(x1, y1, ancho, alto);
 			fill(colorDelTexto);
+			println("AAA");
 			if(mousePressed == true){
 				enabledToType=true;
 			}
@@ -47,9 +45,10 @@ class TextBox  {
 			if(mousePressed == true){
 				enabledToType=false;
 			}
-			fill(colorDelBotonSinFoco);
+			println("NOO");
+			fill(colorDelBoton);
 			rect(x1, y1, ancho, alto);
-			fill(colorDelTextoSinFoco);
+			fill(colorDelTexto);
 		}
 		textSize(tamanoDetexto);
 		text(palabra, x1+5, (y1+alto)-(alto-textAscent() * 0.8) / 2);
