@@ -7,7 +7,7 @@ class TextBox  {
 	int points =0;	// para que no de eerror la conversion de Float a Strings por muchos puntos
 	boolean hasBeenExecuted = false; //para detectar si esta usando correctamente el programa
 	float textHeight;
-	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color colorDelBoton,color colorDelBotonSinFoco,color colorDelTexto) {
+	public TextBox (int x1, int y1, int ancho, int alto, int tamanoDetexto, color colorDelBoton,color colorDelBotonSinFoco,color colorDelTexto, color colorDelTextoSinFoco) {
 		this.x1=x1;
 		this.y1=y1;
 		this.ancho=ancho;
@@ -16,6 +16,7 @@ class TextBox  {
 		this.colorDelBoton=colorDelBoton;
 		this.colorDelBotonSinFoco=colorDelBoton;
 		this.colorDelTexto=colorDelTexto;
+		this.colorDelTextoSinFoco=colorDelTextoSinFoco;
 	}
 	void detectData(String tipoDeDato) { // aca el usuario especifica si quiere recibir solo enteros o cualquier cosa 
 		this.tipoDeDato=tipoDeDato;
@@ -37,6 +38,8 @@ class TextBox  {
 		
 		if (estoySobreElBoton()) {
 			fill(colorDelBoton);
+			rect(x1, y1, ancho, alto);
+			fill(colorDelTexto);
 			if(mousePressed == true){
 				enabledToType=true;
 			}
@@ -45,9 +48,9 @@ class TextBox  {
 				enabledToType=false;
 			}
 			fill(colorDelBotonSinFoco);
+			rect(x1, y1, ancho, alto);
+			fill(colorDelTextoSinFoco);
 		}
-		rect(x1, y1, ancho, alto);
-		fill(colorDelTexto);
 		textSize(tamanoDetexto);
 		text(palabra, x1+5, (y1+alto)-(alto-textAscent() * 0.8) / 2);
 	}
