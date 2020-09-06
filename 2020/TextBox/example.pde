@@ -1,8 +1,8 @@
 TextBox textBox,textBox1;
 void setup() {
 	size(800,800);
-	textBox = new TextBox(100,100,300,50,25,255,255,125);
-	textBox1 = new TextBox(100,300,150,50,15,255,255,125);
+	textBox = new TextBox(100,100,300,50,25,255,125);
+	textBox1 = new TextBox(100,300,150,50,15,255,125);
 }
 void draw() {
 	background(0);
