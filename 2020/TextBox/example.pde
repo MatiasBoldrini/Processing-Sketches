@@ -5,13 +5,11 @@ void setup() {
 	textBox1 = new TextBox(100, 300, 300, 50, 15, 20);
 }
 void draw() {
-	background(125);
+	background(210);
 	textBox.drawTextBox();
 	textBox1.drawTextBox();
 }
 void keyPressed() {
 	textBox.type("str");
-	println(textBox.getNumbers());
 	textBox1.type("int");
-	println(textBox1.getNumbers());
 }
